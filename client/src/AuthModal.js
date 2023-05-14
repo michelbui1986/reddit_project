@@ -1,11 +1,18 @@
 import Input from "./Input";
 import Button from "./Button";
 import { useState } from "react";
+import axios from 'axios';
 function AuthModal() {
-    const [modalType, setModalType] = useState("login");
-    const [email,setEmail] = useState('')
-    const [username,setUsername] = useState('')
-    const [password,setPassword] = useState('')
+  const [modalType, setModalType] = useState("login");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  
+
+  function register(e) {
+    e.preventDefault()
+    // axios.post('')
+  }
   return (
     <div
       className="w-screen h-screen fixed absolute top-0 left-0 z-20 flex"
@@ -46,9 +53,20 @@ function AuthModal() {
           />
         </label>
 
-        <Button className="w-full py-2 mb-3" style={{ borderRadius: ".3rem" }}>
-          {modalType === "login" ? "Log In" : "Sign Up"}
-        </Button>
+        {modalType === "login" && (
+          <Button
+            className="w-full py-2 mb-3"
+            style={{ borderRadius: ".3rem" }}>
+            Log In
+          </Button>
+        )}
+        {modalType === "register" && (
+          <Button
+            className="w-full py-2 mb-3"
+            style={{ borderRadius: ".3rem" }} onClick={e=> register(e)}>
+            Sign Up
+          </Button>
+        )}
         {modalType === "login" && (
           <div>
             New to Reddit?{" "}
